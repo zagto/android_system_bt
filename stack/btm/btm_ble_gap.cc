@@ -512,7 +512,6 @@ static void btm_ble_vendor_capability_vsc_cmpl_cback(
     BTM_TRACE_DEBUG("%s: Status = 0x%02x (0 is success)", __func__, status);
     return;
   }
-  CHECK(p_vcs_cplt_params->param_len >= BTM_VSC_CHIP_CAPABILITY_RSP_LEN);
   STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.adv_inst_max, p);
   STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.rpa_offloading, p);
   STREAM_TO_UINT16(btm_cb.cmn_ble_vsc_cb.tot_scan_results_strg, p);
@@ -535,7 +534,6 @@ static void btm_ble_vendor_capability_vsc_cmpl_cback(
 
   if (btm_cb.cmn_ble_vsc_cb.version_supported >=
       BTM_VSC_CHIP_CAPABILITY_M_VERSION) {
-    CHECK(p_vcs_cplt_params->param_len >= BTM_VSC_CHIP_CAPABILITY_RSP_LEN_M_RELEASE);
     STREAM_TO_UINT16(btm_cb.cmn_ble_vsc_cb.total_trackable_advertisers, p);
     STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.extended_scan_support, p);
     STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.debug_logging_supported, p);
