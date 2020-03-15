@@ -85,7 +85,7 @@ typedef struct {
 #define STRING_VALUE_OF(x) #x
 
 // Abort if there is no response to an HCI command.
-static const uint32_t COMMAND_PENDING_TIMEOUT_MS = 2000;
+static const uint32_t COMMAND_PENDING_TIMEOUT_MS = 8000;
 static const uint32_t COMMAND_PENDING_MUTEX_ACQUIRE_TIMEOUT_MS = 500;
 static const uint32_t COMMAND_TIMEOUT_RESTART_MS = 5000;
 static const uint32_t ROOT_INFLAMMED_RESTART_MS = 5000;
@@ -654,6 +654,7 @@ static bool filter_incoming_event(BT_HDR* packet) {
     process_command_credits(credits);
 
     if (!wait_entry) {
+      update_command_response_timer();
       if (opcode != HCI_COMMAND_NONE) {
         LOG_WARN(LOG_TAG,
                  "%s command complete event with no matching command (opcode: "
@@ -686,6 +687,7 @@ static bool filter_incoming_event(BT_HDR* packet) {
     process_command_credits(credits);
 
     if (!wait_entry) {
+      update_command_response_timer();
       LOG_WARN(
           LOG_TAG,
           "%s command status event with no matching command. opcode: 0x%04x",
