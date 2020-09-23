@@ -108,7 +108,7 @@
 #endif
 
 #ifndef BTA_DM_SDP_DB_SIZE
-#define BTA_DM_SDP_DB_SIZE 8000
+#define BTA_DM_SDP_DB_SIZE 20000
 #endif
 
 #ifndef HL_INCLUDED
@@ -1151,7 +1151,7 @@
 #endif
 
 #ifndef HID_DEV_MTU_SIZE
-#define HID_DEV_MTU_SIZE 64
+#define HID_DEV_MTU_SIZE 512
 #endif
 
 #ifndef HID_DEV_FLUSH_TO
